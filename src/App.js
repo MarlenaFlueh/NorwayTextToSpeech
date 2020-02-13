@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactAudioPlayer from 'react-audio-player'
 import logo from './logo.png';
 import './App.css';
 import { Table } from 'reactstrap';
@@ -17,12 +16,11 @@ class App extends Component {
       return word.split("").map(item => item === " " ? "%20" : item).join("")
     }
 
-    const readText = (word) => {
+    const readText = (event, word) => {
+      event.preventDefault()
       const audio = new Audio();
-      audio.play()
       audio.src = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=${checkWord(word)}&tl=no&total=1&idx=0&textlen=${word.length}`;
       audio.play()
-      setInterval(function () { audio.play(); }, 1000 * 60);
     }
 
     const visibleDeu = () => {
@@ -40,10 +38,7 @@ class App extends Component {
           <th className="padding-top" scope="row">{list.indexOf(item) + 1}</th>
           {this.state.deuVisible ? <td className="padding-top">{item.deu}</td> : <td></td>}
           {this.state.norVisible ? <td className="padding-top">{item.nor}</td> : <td></td>}
-          <ReactAudioPlayer
-            src="my_audio_file.ogg"
-          />
-          <button className="volumeButton" onClick={() => readText(item.speech)}>🔊</button>
+          <button className="volumeButton" onClick={(event) => readText(event, item.speech)}>🔊</button>
         </tr>
       )
       )
