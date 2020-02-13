@@ -53,7 +53,7 @@ class App extends Component {
               <thead>
                 <tr>
                   <th></th>
-                  <th className="padding"><button className="button" onClick={() => visibleDeu()}>Deutsch</button></th>
+                  <th className="padding"><button className="button" onClick={() => readText("katt")}>Deutsch</button></th>
                   <th className="padding"><button className="button" onClick={() => visibleNor()}>Norwegisch</button></th>
                   <th></th>
                 </tr>
