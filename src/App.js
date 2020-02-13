@@ -19,7 +19,6 @@ class App extends Component {
     function readText(word) {
       const audio = new Audio();
       audio.src = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=${checkWord(word)}&tl=no&total=1&idx=0&textlen=${word.length}`;
-      audio.load()
       audio.play()
     }
 
@@ -38,6 +37,7 @@ class App extends Component {
           <th className="padding-top" scope="row">{list.indexOf(item) + 1}</th>
           {this.state.deuVisible ? <td className="padding-top">{item.deu}</td> : <td></td>}
           {this.state.norVisible ? <td className="padding-top">{item.nor}</td> : <td></td>}
+          <audio ref="audio_tag" src={`https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=${checkWord("katt")}&tl=no&total=1&idx=0&textlen=${4}`} controls />
           <button className="volumeButton" onClick={() => readText(item.speech)}>🔊</button>
         </tr>
       )
@@ -53,7 +53,7 @@ class App extends Component {
               <thead>
                 <tr>
                   <th></th>
-                  <th className="padding"><button className="button" onClick={() => readText("katt")}>Deutsch</button></th>
+                  <th className="padding"><button className="button" onClick={() => visibleDeu()}>Deutsch</button></th>
                   <th className="padding"><button className="button" onClick={() => visibleNor()}>Norwegisch</button></th>
                   <th></th>
                 </tr>
