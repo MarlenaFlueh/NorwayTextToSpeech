@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.png';
+import reload from './reload.png'
 import './App.css';
 import { Table } from 'reactstrap';
 import { list } from "./config"
@@ -7,7 +8,8 @@ import { list } from "./config"
 class App extends Component {
   state = {
     deuVisible: true,
-    norVisible: true
+    norVisible: true,
+    vocabularyList: list
   }
 
   render() {
@@ -30,14 +32,25 @@ class App extends Component {
       this.setState({ norVisible: !this.state.norVisible })
     }
 
+    const changeList = (list) => {
+      let array = list
+      for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      this.setState({ vocabularyList: array })
+    }
+
     const tableContent = () => {
 
-      return list.map(item => (
+      return this.state.vocabularyList.map(item => (
         <tr>
-          <th className="padding-top" scope="row">{list.indexOf(item) + 1}</th>
-          {this.state.deuVisible ? <td className="padding-top">{item.deu}</td> : <td></td>}
-          {this.state.norVisible ? <td className="padding-top">{item.nor}</td> : <td></td>}
-          <button className="volumeButton" onClick={(event) => readText(item.speech)}>🔊</button>
+          <th className="padding-top padding" scope="row">{this.state.vocabularyList.indexOf(item) + 1}</th>
+          {this.state.deuVisible ? <td className="padding-top padding">{item.deu}</td> : <td></td>}
+          {this.state.norVisible ? <td className="padding-top padding">{item.nor}</td> : <td></td>}
+          <button className="volumeButton" onClick={() => readText(item.speech)}>🔊</button>
         </tr>
       )
       )
@@ -51,9 +64,13 @@ class App extends Component {
             <Table bordered>
               <thead>
                 <tr>
-                  <th></th>
-                  <th className="padding"><button className="button" onClick={() => visibleDeu()}>Deutsch</button></th>
-                  <th className="padding"><button className="button" onClick={() => visibleNor()}>Norwegisch</button></th>
+                  <th>
+                    <button className="button" onClick={() => changeList(this.state.vocabularyList)}>
+                      <img src={reload} alt="logo" className="reload" />
+                    </button>
+                  </th>
+                  <th className="paddingTable"><button className="button" onClick={() => visibleDeu()}>Deutsch</button></th>
+                  <th className="paddingTable"><button className="button" onClick={() => visibleNor()}>Norwegisch</button></th>
                   <th></th>
                 </tr>
               </thead>

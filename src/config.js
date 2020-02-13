@@ -45,12 +45,12 @@ const list = [
         "speech": "Tusen takk"
     },
     {
-        "deu": "Gleichfalls.",
+        "deu": "Dir auch.",
         "nor": "Så ha du.",
         "speech": "så ha du."
     },
     {
-        "deu": "Dafür nicht.",
+        "deu": "Nicht's zu Danken.",
         "nor": "Ingenting å takke for.",
         "speech": "ingenting å takke for."
     },
@@ -68,11 +68,6 @@ const list = [
         "deu": "Mach’s gut!",
         "nor": "Ha det bra!",
         "speech": "Ha de bra."
-    },
-    {
-        "deu": "Ich heiße",
-        "nor": "Jeg heter",
-        "speech": "jeg heter"
     },
     {
         "deu": "Ich wohne in Oslo.",
@@ -93,6 +88,11 @@ const list = [
         "deu": "Ich auch nicht.",
         "nor": "Ikke jeg heller.",
         "speech": "Ikke jeg heller."
+    },
+    {
+        "deu": "Ich komme auch aus Oslo.",
+        "nor": "Jeg kommer også fra Oslo.",
+        "speech": "Jeg kommer også fra Oslo."
     }
 ]
 
