@@ -37,7 +37,7 @@ class App extends Component {
           <th className="padding-top" scope="row">{list.indexOf(item) + 1}</th>
           {this.state.deuVisible ? <td className="padding-top">{item.deu}</td> : <td></td>}
           {this.state.norVisible ? <td className="padding-top">{item.nor}</td> : <td></td>}
-          <button className="volumeButton" onClick={(event) => readText(event, item.speech)}>🔊</button>
+          <button className="volumeButton" onClick={(event) => readText(item.speech)}>🔊</button>
         </tr>
       )
       )
