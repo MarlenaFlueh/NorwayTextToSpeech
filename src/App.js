@@ -17,9 +17,11 @@ class App extends Component {
     }
 
     const readText = (word) => {
-      var audio = new Audio();
+      const audio = new Audio();
       audio.src = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=${checkWord(word)}&tl=no&total=1&idx=0&textlen=${word.length}`;
-      audio.play();
+      audio.addEventListener("canplaythrough", event => {
+        audio.play()
+      })
     }
 
     const visibleDeu = () => {

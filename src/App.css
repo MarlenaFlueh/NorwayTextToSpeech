@@ -57,7 +57,6 @@
     cursor: pointer;
     background-color:transparent;
     border: none;
-    margin-top: 20px;
 }
 
 .padding {
@@ -66,7 +65,7 @@
 }
 
 .padding-top {
-  padding-top: 5px;
+  padding-top: 10px;
 }
 
 @media only screen and (min-width: 600px) {
