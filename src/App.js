@@ -4,26 +4,15 @@ import reload from './reload.png'
 import './App.css';
 import { Table } from 'reactstrap';
 import { list } from "./config"
-import Music from "./Music"
 
 class App extends Component {
   state = {
     deuVisible: true,
     norVisible: true,
-    vocabularyList: list
+    vocabularyList: list[0]
   }
 
   render() {
-
-    const checkWord = (word) => {
-      return word.split("").map(item => item === " " ? "%20" : item).join("")
-    }
-
-    const readText = (word) => {
-      const audio = new Audio();
-      audio.src = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=${checkWord(word)}&tl=no&total=1&idx=0&textlen=${word.length}`;
-      audio.play()
-    }
 
     const visibleDeu = () => {
       this.setState({ deuVisible: !this.state.deuVisible })
@@ -51,10 +40,19 @@ class App extends Component {
           <th className="padding-top padding" scope="row">{this.state.vocabularyList.indexOf(item) + 1}</th>
           {this.state.deuVisible ? <td className="padding-top padding">{item.deu}</td> : <td></td>}
           {this.state.norVisible ? <td className="padding-top padding">{item.nor}</td> : <td></td>}
-          <button className="volumeButton" onClick={() => readText(item.speech)}>🔊</button>
         </tr>
       )
       )
+    }
+
+    const setList = list => {
+      this.setState({ vocabularyList: list })
+    }
+
+    const getButton = () => {
+      return list.map(item => (
+        <button className="buttonMenu" onClick={() => setList(item)}>Woche {list.indexOf(item) + 1}</button>
+      ))
     }
 
     return (
@@ -62,7 +60,9 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <Music />
+            <div>
+              {getButton()}
+            </div>
             <Table bordered>
               <thead>
                 <tr>
@@ -71,7 +71,7 @@ class App extends Component {
                       <img src={reload} alt="logo" className="reload" />
                     </button>
                   </th>
-                  <th className="paddingTable"><button className="button" onClick={() => visibleDeu()}>Deutsch</button></th>
+                  <th className="paddingTableTwo"><button className="button" onClick={() => visibleDeu()}>Deutsch</button></th>
                   <th className="paddingTable"><button className="button" onClick={() => visibleNor()}>Norwegisch</button></th>
                   <th></th>
                 </tr>

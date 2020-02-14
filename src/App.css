@@ -55,6 +55,27 @@
     transition: color 0.15s ease-in-out;
 }
 
+.buttonMenu {
+  display: inline-block;
+    font-weight: 400;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: white;
+    border: 1px solid white;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out;
+    margin-right: 5px;
+}
+
 .buttonLink {
     font-size: 30px;
     color: #61dafb;
@@ -82,7 +103,7 @@
 }
 
 .padding {
-  padding-right: 3px;
+  padding-right: 0px;
 }
 
 .padding-top {
@@ -90,7 +111,11 @@
 }
 
 .paddingTable {
-  padding-right: 50px;
+  padding-right: 20px;
+}
+
+.paddingTableTwo {
+  padding-right: 40px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -100,6 +125,10 @@
   }
 
   .paddingTable {
+    padding-right: 320px;
+  }
+
+  .paddingTableTwo {
     padding-right: 320px;
   }
 
