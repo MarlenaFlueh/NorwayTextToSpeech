@@ -4,6 +4,7 @@ import reload from './reload.png'
 import './App.css';
 import { Table } from 'reactstrap';
 import { list } from "./config"
+import Music from "./Music"
 
 class App extends Component {
   state = {
@@ -61,6 +62,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
+            <Music />
             <Table bordered>
               <thead>
                 <tr>
