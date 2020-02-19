@@ -3,23 +3,26 @@ import logo from './logo.png';
 import reload from './reload.png'
 import './App.css';
 import { Table } from 'reactstrap';
-import { list } from "./config"
+import { list, verbs } from "./config"
 
 class App extends Component {
   state = {
     deuVisible: true,
     norVisible: true,
-    vocabularyList: list[0]
+    infinitivVisible: true,
+    präsensVisible: false,
+    verbDeuVisible: true,
+    präteritumVisible: false,
+    perfectVisible: false,
+    vocabularyList: list[0],
+    weeksVisible: true,
+    activeTab: 1
   }
 
   render() {
 
-    const visibleDeu = () => {
-      this.setState({ deuVisible: !this.state.deuVisible })
-    }
-
-    const visibleNor = () => {
-      this.setState({ norVisible: !this.state.norVisible })
+    const changeVisibility = item => {
+      this.setState({ [item]: !this.state[item] })
     }
 
     const changeList = (list) => {
@@ -33,10 +36,9 @@ class App extends Component {
       this.setState({ vocabularyList: array })
     }
 
-    const tableContent = () => {
-
+    const weeksTableContent = () => {
       return this.state.vocabularyList.map(item => (
-        <tr>
+        <tr key={this.state.vocabularyList.indexOf(item)}>
           <th className="padding-top padding" scope="row">{this.state.vocabularyList.indexOf(item) + 1}</th>
           {this.state.deuVisible ? <td className="padding-top padding">{item.deu}</td> : <td></td>}
           {this.state.norVisible ? <td className="padding-top padding">{item.nor}</td> : <td></td>}
@@ -45,14 +47,93 @@ class App extends Component {
       )
     }
 
-    const setList = list => {
-      this.setState({ vocabularyList: list })
+    const verbsTableContent = () => {
+      return this.state.vocabularyList.map(item => (
+        <tr key={this.state.vocabularyList.indexOf(item)}>
+          <th className="padding-top padding" scope="row">{this.state.vocabularyList.indexOf(item) + 1}</th>
+          {this.state.verbDeuVisible ? <td className="padding-top padding">{item.deutsch}</td> : <td></td>}
+          {this.state.infinitivVisible ? <td className="padding-top padding">{item.infinitv}</td> : <td></td>}
+          {this.state.präsensVisible ? <td className="padding-top padding">{item.präsens}</td> : <td></td>}
+          {this.state.präteritumVisible ? <td className="padding-top padding">{item.präteritum}</td> : <td></td>}
+          {this.state.perfectVisible ? <td className="padding-top padding">{item.perfect}</td> : <td></td>}
+        </tr>
+      )
+      )
+    }
+
+    const setList = (list, activeTab) => {
+      this.setState({
+        vocabularyList: list,
+        weeksVisible: true,
+        activeTab
+      })
     }
 
     const getButton = () => {
       return list.map(item => (
-        <button className="buttonMenu" onClick={() => setList(item)}>Woche {list.indexOf(item) + 1}</button>
+        <button
+          className={this.state.activeTab === list.indexOf(item) + 1 ? "buttonMenuActive" : "buttonMenu"}
+          key={list.indexOf(item)}
+          onClick={() => setList(item, list.indexOf(item) + 1)}>
+          Woche {list.indexOf(item) + 1}
+        </button>
       ))
+    }
+
+    const showVerben = () => {
+      this.setState({
+        vocabularyList: verbs,
+        weeksVisible: false,
+        activeTab: 0
+      })
+    }
+
+
+    const getTable = () => {
+      if (this.state.weeksVisible) {
+        return (
+          <Table bordered>
+            <thead>
+              <tr>
+                <th>
+                  <button className="button" onClick={() => changeList(this.state.vocabularyList)}>
+                    <img src={reload} alt="logo" className="reload" />
+                  </button>
+                </th>
+                <th className="paddingTableTwo"><button className="button" onClick={() => changeVisibility("deuVisible")}>Deutsch</button></th>
+                <th className="paddingTable"><button className="button" onClick={() => changeVisibility("norVisible")}>Norwegisch</button></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {weeksTableContent()}
+            </tbody>
+          </Table>
+        )
+      } else {
+        return (
+          <Table bordered>
+            <thead>
+              <tr>
+                <th>
+                  <button className="button" onClick={() => changeList(this.state.vocabularyList)}>
+                    <img src={reload} alt="logo" className="reload" />
+                  </button>
+                </th>
+                <th><button className="button" onClick={() => changeVisibility("verbDeuVisible")}>Deu</button></th>
+                <th><button className="button" onClick={() => changeVisibility("infinitivVisible")}>Inf</button></th>
+                <th><button className="button" onClick={() => changeVisibility("präsensVisible")}>Präs</button></th>
+                <th><button className="button" onClick={() => changeVisibility("präteritumVisible")}>Prät</button></th>
+                <th><button className="button" onClick={() => changeVisibility("perfectVisible")}>Perf</button></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {verbsTableContent()}
+            </tbody>
+          </Table>
+        )
+      }
     }
 
     return (
@@ -61,25 +142,14 @@ class App extends Component {
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <div>
+              <button
+                className={this.state.activeTab === 0 ? "buttonMenuActive" : "buttonMenu"}
+                onClick={() => showVerben()}>
+                Verben
+              </button>
               {getButton()}
             </div>
-            <Table bordered>
-              <thead>
-                <tr>
-                  <th>
-                    <button className="button" onClick={() => changeList(this.state.vocabularyList)}>
-                      <img src={reload} alt="logo" className="reload" />
-                    </button>
-                  </th>
-                  <th className="paddingTableTwo"><button className="button" onClick={() => visibleDeu()}>Deutsch</button></th>
-                  <th className="paddingTable"><button className="button" onClick={() => visibleNor()}>Norwegisch</button></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {tableContent()}
-              </tbody>
-            </Table>
+            {getTable()}
           </header>
         </div>
       </div>
@@ -87,4 +157,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
