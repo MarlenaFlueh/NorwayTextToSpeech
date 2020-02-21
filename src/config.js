@@ -75,24 +75,76 @@ const list = [
         {
             "deu": "Ich komme auch aus Oslo.",
             "nor": "Jeg kommer også fra Oslo."
+        },
+        {
+            "deu": "Wie heißt du?",
+            "nor": "Hva heter du?"
+        },
+        {
+            "deu": "Wo kommst du her?",
+            "nor": "Hvor kommer du fra?"
         }
     ],
     [
         {
-            "deu": "test1.",
-            "nor": "test."
+            "deu": "ebenfalls",
+            "nor": "likeledes, likeså"
         },
         {
-            "deu": "test2.",
-            "nor": "test."
+            "deu": "Kein Problem",
+            "nor": "Ikke problem"
         },
         {
-            "deu": "test3.",
-            "nor": "test."
+            "deu": "hun",
+            "nor": "sie"
         },
         {
-            "deu": "test4.",
-            "nor": "test."
+            "deu": "han",
+            "nor": "er"
+        },
+        {
+            "deu": "ein Mädchen",
+            "nor": "ei jente"
+        },
+        {
+            "deu": "ein Junge",
+            "nor": "en gutt"
+        },
+        {
+            "deu": "eine Tür",
+            "nor": "en dør"
+        },
+        {
+            "deu": "eine Frau",
+            "nor": "ei kvinne"
+        },
+        {
+            "deu": "ein Mann",
+            "nor": "en mann"
+        },
+        {
+            "deu": "Ich habe einen Tisch.",
+            "nor": "Jeg har et bord."
+        },
+        {
+            "deu": "Ja, das bin ich.",
+            "nor": "Ja, det er jeg."
+        },
+        {
+            "deu": "Und was (ist) mit dir?",
+            "nor": "Og hva med deg?"
+        },
+        {
+            "deu": "deshalb",
+            "nor": "derfor"
+        },
+        {
+            "deu": "daher",
+            "nor": "derfra"
+        },
+        {
+            "deu": "Versuche jetzt selbst.",
+            "nor": "Å prøve nå selv."
         }
     ]
 ]
@@ -226,13 +278,6 @@ const verbs = [
     },
     {
         "deutsch": "laufen",
-        "infinitv": "ligge",
-        "präsens": "ligger",
-        "präteritum": "lå",
-        "perfect": "har ligget"
-    },
-    {
-        "deutsch": "liegen",
         "infinitv": "løpe",
         "präsens": "løper",
         "präteritum": "løp",
