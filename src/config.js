@@ -91,16 +91,16 @@ const list = [
             "nor": "likeledes, likeså"
         },
         {
-            "deu": "Kein Problem",
-            "nor": "Ikke problem"
+            "deu": "kein Problem",
+            "nor": "ikke problem"
         },
         {
-            "deu": "hun",
-            "nor": "sie"
+            "deu": "sie",
+            "nor": "hun"
         },
         {
-            "deu": "han",
-            "nor": "er"
+            "deu": "er",
+            "nor": "han"
         },
         {
             "deu": "ein Mädchen",
@@ -143,8 +143,8 @@ const list = [
             "nor": "derfra"
         },
         {
-            "deu": "Versuche jetzt selbst.",
-            "nor": "Å prøve nå selv."
+            "deu": "Versuche jetzt selbst!",
+            "nor": "Å prøve nå selv!"
         }
     ]
 ]
